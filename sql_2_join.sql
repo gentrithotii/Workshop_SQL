@@ -81,13 +81,34 @@ JOIN countrylanguage AS cl ON c.CountryCode =  cl.CountryCode
 WHERE c.Population BETWEEN 500 AND 600;
 #
 # 15: What names of the cities are in the same country as the city with a population of 122199 (including the that city itself)
-#
+SELECT c.Name AS City_Name, c.Population
+FROM city AS c
+WHERE c.CountryCode = (
+    SELECT city.CountryCode
+    FROM city
+    WHERE city.Population = 122199
+    );
 #
 # 16: What names of the cities are in the same country as the city with a population of 122199 (excluding the that city itself)
-#
+SELECT c.Name AS City_Name, c.Population
+FROM city AS c
+WHERE c.CountryCode = (
+    SELECT city.CountryCode
+    FROM city
+    WHERE  city.Population IN (122199) 
+    ) AND c.Population != 122199;
 #
 # 17: What are the city names in the country where Luanda is capital?
-#
+SELECT c.Name
+FROM city as c
+WHERE c.CountryCode LIKE (
+	SELECT city.CountryCode
+    FROM city
+    WHERE city.Name = "Luanda");
+    
+SELECT * FROM city WHERE  city.CountryCode = "AGO";
+SELECT * FROM city WHERE city.ID = 1
+
 #
 # 18: What are the names of the capital cities in countries in the same region as the city named Yaren
 #
