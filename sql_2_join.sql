@@ -3,22 +3,23 @@
 
 #
 # 1: Get the cities with a name starting with ping sorted by their population with the least populated cities first
-#
+SELECT *  FROM city AS c WHERE c.Name LIKE "ping%" ORDER BY c.Population ASC;   
 #
 # 2: Get the cities with a name starting with ran sorted by their population with the most populated cities first
-#
+SELECT *  FROM city AS c WHERE c.Name LIKE "ran%" ORDER BY c.Population DESC;   
 #
 # 3: Count all cities
-#
+SELECT count(c.Name) AS NumberOfCities FROM city as c;
+ 
 #
 # 4: Get the average population of all cities
-#
+SELECT avg(c.Population) FROM city as c; 
 #
 # 5: Get the biggest population found in any of the cities
-#
+SELECT max(c.Population)  FROM city as c;
 #
 # 6: Get the smallest population found in any of the cities
-#
+SELECT min(c.Population)  FROM city as c;
 #
 # 7: Sum the population of all cities with a population below 10000
 #
