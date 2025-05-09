@@ -132,7 +132,7 @@ WHERE cr.Region = (
     SELECT cr2.Region
     FROM city y
     JOIN country cr2 ON y.CountryCode = cr2.Code
-    WHERE y.Name = 'Riga'
+    WHERE y.Name = "Riga"
 );
 
 # 20: Get the name of the most populous city
