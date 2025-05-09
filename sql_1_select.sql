@@ -12,7 +12,6 @@
 # Table: CountryLanguage
 # Columns: CountryCode, Language, IsOfficial,Percentage
 #
-
 #
 # 1: Get a query to return "Hello World", 123
 # (Hint: 1 row, 2 columns)

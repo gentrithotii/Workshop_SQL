@@ -58,8 +58,8 @@ SELECT  c.CountryCode , COUNT(*)   as amount_of_cities
 FROM city AS c 
 GROUP BY c.CountryCode 
 HAVING COUNT(*) >200;   
-#
-# 12: Get the countrycodes with more than 200 cities ordered by city count
+ 
+ # 12: Get the countrycodes with more than 200 cities ordered by city count
 SELECT  c.CountryCode , COUNT(*)   AS amount_of_cities
  FROM city AS c 
  GROUP BY c.CountryCode 
@@ -69,15 +69,16 @@ SELECT  c.CountryCode , COUNT(*)   AS amount_of_cities
 #
 # 13: What language(s) is spoken in the city with a population between 400 and 500 ?
 SELECT c.Name, cl.Language, c.Population
-FROM city as c 
+FROM city AS c 
 JOIN countrylanguage AS cl ON c.CountryCode =  cl.CountryCode
 WHERE c.Population BETWEEN 400 AND 500;
 
 #
 # 14: What are the name(s) of the cities with a population between 500 and 600 people and the language(s) spoken in them
 SELECT c.Name, cl.Language, c.Population
-FROM city as c 
-JOIN countrylanguage AS cl ON c.CountryCode =  cl.CountryCode
+FROM city AS c 
+JOIN countrylanguage AS cl
+ON c.CountryCode =  cl.CountryCode
 WHERE c.Population BETWEEN 500 AND 600;
 #
 # 15: What names of the cities are in the same country as the city with a population of 122199 (including the that city itself)
@@ -107,12 +108,22 @@ WHERE c.CountryCode LIKE (
     WHERE city.Name = "Luanda");
     
 SELECT * FROM city WHERE  city.CountryCode = "AGO";
-SELECT * FROM city WHERE city.ID = 1
-
 #
 # 18: What are the names of the capital cities in countries in the same region as the city named Yaren
-#
-#
+SELECT c.Name
+FROM country cr
+JOIN city c ON cr.Capital = c.ID
+WHERE cr.Region = (
+    SELECT cr2.Region
+    FROM city y
+    JOIN country cr2 ON y.CountryCode = cr2.Code
+    WHERE y.Name = 'Yaren'
+);
+ 
+SELECT * FROM city AS c WHERE  c.name = "Yaren";
+SELECT * FROM country AS cr WHERE cr.Code = "NRU";
+SELECT * FROM country AS cr WHERE cr.Region = "Micronesia";
+
 # 19: What unique languages are spoken in the countries in the same region as the city named Riga
 #
 #
