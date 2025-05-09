@@ -125,7 +125,18 @@ SELECT * FROM country AS cr WHERE cr.Code = "NRU";
 SELECT * FROM country AS cr WHERE cr.Region = "Micronesia";
 
 # 19: What unique languages are spoken in the countries in the same region as the city named Riga
-#
-#
+SELECT DISTINCT cl.Language
+FROM country cr
+JOIN countryLanguage cl ON cr.Code = cl.CountryCode
+WHERE cr.Region = (
+    SELECT cr2.Region
+    FROM city y
+    JOIN country cr2 ON y.CountryCode = cr2.Code
+    WHERE y.Name = 'Riga'
+);
+
 # 20: Get the name of the most populous city
+SELECT c.Name
+FROM city as c 
+WHERE c.Population = (SELECT max(city.Population) FROM city)
 #
